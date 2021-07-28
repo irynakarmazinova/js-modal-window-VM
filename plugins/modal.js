@@ -52,9 +52,18 @@ $.modal = function (options) {
   };
 };
 
-// реализовать объект опшинс title: string
-// closable: boolean
-// content: string
-// width: string (400px)
-// destroy(): void - удаляет все слушатели, удалить модалку и что бы не осталось элементов
-//
+/*
+ * реализовать объект опшинс title: string
+ * closable: boolean
+ * content: string
+ * width: string ("400px")
+ * destroy(): void - удаляет все слушатели, удалить модалку и что бы не осталось элементов
+ * окно должно закрывать при нажатии на крести и оверлей
+ * ---------------------
+ * setContent(html: string): void | PUBLIC
+ * onClose(): void
+ * onOpen(): void
+ * beforeClose(): boolean
+ * ---------------------
+ * animate.css
+ */
