@@ -1,23 +1,27 @@
-// _приватная системная функция
+// в _createModal нижнее подчеркивание - означает системная функция/метод, котор не должна быть вызвана отдельно, приватная
 function _createModal(options) {
+  const DEFAULT_WIDTH = "600px";
   const modal = document.createElement("div");
   modal.classList.add("vmodal");
   modal.insertAdjacentHTML(
     "afterbegin",
     `
       <div class="modal-overlay">
-        <div class="modal-window">
+        <div class="modal-window" style="width: ${
+          options.width || DEFAULT_WIDTH
+        }">
           <div class="modal-header">
-            <span class="modal-title">Modal title</span>
-            <span class="modal-close">&times;</span>
+            <span class="modal-title">${options.title || "Window"}</span>
+            ${
+              options.closable ? `<span class="modal-close">&times;</span>` : ""
+            }
           </div>
           <div class="modal-body">
-            <p>Lorem ipsum dolor sit.</p>
-            <p>Lorem ipsum dolor sit.</p>
+          ${options.content || ""}
           </div>
           <div class="modal-footer">
-            <button>OK</button>
-            <button>CANSEL</button>
+            <button>Ok</button>
+            <button>Cansel</button>
           </div>
         </div>
       </div>`
@@ -26,15 +30,17 @@ function _createModal(options) {
   return modal;
 }
 
+// у $ присутствует функция modal, которая явл функцией
 $.modal = function (options) {
   // options - объект с опциями параметры, которые будут по итогу настраивать модальное окно
-
   const ANIMATION_SPEED = 200;
   // $modal- приватная переменная
+
   const $modal = _createModal(options);
   let closing = false;
 
   return {
+    // эти методы позволяют взаимодействовать с инстансом
     open() {
       !closing && $modal.classList.add("open");
     },
@@ -51,19 +57,11 @@ $.modal = function (options) {
     destroy() {},
   };
 };
+// получу по итогу, когда вызову данный плагин - инстанс этого модального окна
 
 /*
- * реализовать объект опшинс title: string
- * closable: boolean
- * content: string
- * width: string ("400px")
- * destroy(): void - удаляет все слушатели, удалить модалку и что бы не осталось элементов
- * окно должно закрывать при нажатии на крести и оверлей
- * ---------------------
- * setContent(html: string): void | PUBLIC
- * onClose(): void
- * onOpen(): void
- * beforeClose(): boolean
+ * лучше не через класс, а так - пользуюсь замыканиями -> доступны приватные переменные
+ * анимация делается через css
  * ---------------------
  * animate.css
  */

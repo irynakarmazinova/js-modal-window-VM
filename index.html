@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS modal window</title>
 
     <!-- подключили bootstrap, что бы визуально красиво все отобразить, не более-->
     <link
@@ -13,7 +14,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/modal.css" />
-    <title>JS modal window</title>
   </head>
   <body>
     <div class="container">
@@ -34,9 +34,12 @@
       </p>
     </div>
 
+    <!-- подключать первым, что бы файлам ниже был доступен объект $ -->
     <script src="./base.js"></script>
+
     <!-- тут подключаются различные плагины -->
     <script src="./plugins/modal.js"></script>
+
     <!-- - -->
     <script src="./index.js"></script>
   </body>
